@@ -1,0 +1,471 @@
+<div class="admin-post-container">
+  <!-- Header with Back Navigation -->
+  <div class="admin-post-header">
+    <a href="/admin/dashboard" class="back-btn">
+      <i class="fas fa-arrow-left"></i>
+      Back to Dashboard
+    </a>
+    <h1 class="admin-post-title">Create New Post</h1>
+    <p class="admin-post-subtitle">Add a new blog post to your site</p>
+  </div>
+
+  <!-- Post Form -->
+  <form action="/admin/add-post" method="POST" class="admin-post-form">
+    <div class="form-section">
+      <div class="form-group">
+        <label for="title" class="form-label">
+          Post Title
+          <span class="required">*</span>
+        </label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          class="form-input"
+          placeholder="Enter a compelling title for your post"
+          required
+        />
+        <div class="form-hint">Keep it concise and descriptive</div>
+      </div>
+
+      <div class="form-group">
+        <label for="body" class="form-label">
+          Content
+          <span class="required">*</span>
+        </label>
+        <textarea
+          id="body"
+          name="body"
+          class="form-textarea"
+          placeholder="Write your post content here... You can use Markdown formatting."
+          rows="15"
+          required
+        ></textarea>
+        <div class="form-hint">Supports Markdown formatting</div>
+      </div>
+
+      <!-- <div class="form-row">
+        <div class="form-group">
+          <label for="author" class="form-label">Author</label>
+          <input
+            type="text"
+            id="author"
+            name="author"
+            class="form-input"
+            placeholder="Your name"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="tags" class="form-label">Tags</label>
+          <input
+            type="text"
+            id="tags"
+            name="tags"
+            class="form-input"
+            placeholder="nodejs, javascript, webdev"
+          />
+          <div class="form-hint">Separate tags with commas</div>
+        </div>
+      </div> -->
+
+      <div class="form-group">
+        <label class="checkbox-label">
+          <input type="checkbox" name="published" checked />
+          <span class="checkmark"></span>
+          Publish immediately
+        </label>
+        <!-- <div class="form-hint">Uncheck to save as draft</div> -->
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button
+        type="button"
+        class="btn btn-secondary"
+        onclick="window.history.back()"
+      >
+        <i class="fas fa-times"></i>
+        Cancel
+      </button>
+      <button type="reset" class="btn btn-outline">
+        <i class="fas fa-undo"></i>
+        Reset Form
+      </button>
+      <button type="submit" class="btn btn-primary">
+        <i class="fas fa-plus"></i>
+        Create Post
+      </button>
+    </div>
+  </form>
+
+  <!-- Quick Tips Sidebar -->
+  <div class="admin-post-sidebar">
+    <div class="sidebar-card">
+      <h3 class="sidebar-title">
+        <i class="fas fa-lightbulb"></i>
+        Writing Tips
+      </h3>
+      <ul class="sidebar-list">
+        <li>Write a clear, engaging title</li>
+        <li>Use headings to structure your content</li>
+        <li>Include code examples where relevant</li>
+        <li>Add images to break up text</li>
+        <li>Proofread before publishing</li>
+      </ul>
+    </div>
+
+    <div class="sidebar-card">
+      <h3 class="sidebar-title">
+        <i class="fas fa-code"></i>
+        Formatting Help
+      </h3>
+      <div class="formatting-help">
+        <code># Heading</code>
+        <code>**Bold**</code>
+        <code>*Italic*</code>
+        <code>`code`</code>
+        <code>![alt](url)</code>
+        <code>[link](url)</code>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .admin-post-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .admin-post-header {
+    grid-column: 1 / -1;
+    margin-bottom: 8px;
+  }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    padding: 8px 0;
+    transition: color 0.2s ease;
+  }
+
+  .back-btn:hover {
+    color: #0056b3;
+  }
+
+  .admin-post-title {
+    color: #2d2d2d;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    letter-spacing: -0.5px;
+  }
+
+  .admin-post-subtitle {
+    color: #666;
+    font-size: 1.1rem;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .admin-post-form {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 32px;
+    border: 1px solid #f0f0f0;
+  }
+
+  .form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .form-label {
+    color: #2d2d2d;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .required {
+    color: #dc3545;
+    font-size: 1.2rem;
+  }
+
+  .form-input,
+  .form-textarea {
+    padding: 14px 16px;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #ffffff;
+    transition: all 0.2s ease;
+    color: #2d2d2d;
+    font-family: inherit;
+    width: 100%;
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 300px;
+    line-height: 1.6;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  .form-input:focus,
+  .form-textarea:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  }
+
+  .form-hint {
+    color: #8c8c8c;
+    font-size: 0.85rem;
+    font-style: italic;
+  }
+
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    font-weight: 500;
+    color: #2d2d2d;
+  }
+
+  .checkbox-label input[type="checkbox"] {
+    display: none;
+  }
+
+  .checkmark {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #e1e5e9;
+    border-radius: 4px;
+    position: relative;
+    transition: all 0.2s ease;
+  }
+
+  .checkbox-label input[type="checkbox"]:checked + .checkmark {
+    background: #007bff;
+    border-color: #007bff;
+  }
+
+  .checkbox-label input[type="checkbox"]:checked + .checkmark::after {
+    content: "✓";
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .form-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid #f0f0f0;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    font-family: inherit;
+  }
+
+  .btn-primary {
+    background: #007bff;
+    color: #ffffff;
+  }
+
+  .btn-primary:hover {
+    background: #0056b3;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+  }
+
+  .btn-secondary {
+    background: #6c757d;
+    color: #ffffff;
+  }
+
+  .btn-secondary:hover {
+    background: #545b62;
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: #6c757d;
+    border: 2px solid #e1e5e9;
+  }
+
+  .btn-outline:hover {
+    background: #f8f9fa;
+    border-color: #6c757d;
+  }
+
+  /* Sidebar */
+  .admin-post-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .sidebar-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 24px;
+    border: 1px solid #f0f0f0;
+  }
+
+  .sidebar-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #2d2d2d;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 16px 0;
+  }
+
+  .sidebar-title i {
+    color: #007bff;
+  }
+
+  .sidebar-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .sidebar-list li {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    padding-left: 0;
+  }
+
+  .sidebar-list li::before {
+    content: "•";
+    color: #007bff;
+    font-weight: bold;
+    margin-right: 8px;
+  }
+
+  .formatting-help {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .formatting-help code {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.8rem;
+    font-family: "Fira Code", monospace;
+    color: #2d2d2d;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .admin-post-container {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .admin-post-sidebar {
+      order: -1;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .admin-post-container {
+      padding: 16px;
+    }
+
+    .admin-post-form {
+      padding: 24px;
+    }
+
+    .form-row {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .form-actions {
+      flex-direction: column;
+    }
+
+    .btn {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .admin-post-title {
+      font-size: 1.5rem;
+    }
+
+    .admin-post-form {
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .sidebar-card {
+      padding: 20px;
+    }
+  }
+</style>
+
+<!-- Font Awesome for icons -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+/>

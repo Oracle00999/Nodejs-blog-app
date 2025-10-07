@@ -1,0 +1,350 @@
+<footer class="admin-footer">
+  <div class="admin-footer__container">
+    <!-- Left Section - Brand & Info -->
+    <div class="admin-footer__section">
+      <div class="admin-footer__brand">
+        <i class="fas fa-shield-alt"></i>
+        <span class="admin-footer__title">Admin Panel</span>
+      </div>
+      <p class="admin-footer__description">
+        Secure administration dashboard for NodeJS Blog
+      </p>
+      <div class="admin-footer__version">
+        <span class="version-badge">v2.1.4</span>
+        <span class="status-indicator">
+          <i class="fas fa-circle"></i>
+          System Online
+        </span>
+      </div>
+    </div>
+
+    <!-- Middle Section - Quick Stats -->
+    <div class="admin-footer__section">
+      <h4 class="admin-footer__heading">Quick Stats</h4>
+      <div class="admin-footer__stats">
+        <div class="stat-item">
+          <span class="stat-number">24</span>
+          <span class="stat-label">Posts</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">156</span>
+          <span class="stat-label">Users</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">12</span>
+          <span class="stat-label">Comments</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Section - System Info & Actions -->
+    <div class="admin-footer__section">
+      <h4 class="admin-footer__heading">System</h4>
+      <div class="admin-footer__system">
+        <div class="system-info">
+          <span class="system-label">Last Backup:</span>
+          <span class="system-value">2 hours ago</span>
+        </div>
+        <div class="system-info">
+          <span class="system-label">Uptime:</span>
+          <span class="system-value">15 days</span>
+        </div>
+        <div class="footer-actions">
+          <button class="footer-btn" title="Clear Cache">
+            <i class="fas fa-broom"></i>
+          </button>
+          <button class="footer-btn" title="System Logs">
+            <i class="fas fa-file-alt"></i>
+          </button>
+          <button class="footer-btn" title="Refresh Data">
+            <i class="fas fa-sync-alt"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="admin-footer__bottom">
+    <div class="admin-footer__bottom-content">
+      <div class="footer-copyright">
+        &copy; <%= new Date().getFullYear() %> NodeJS Blog Admin. Built By
+        Anthony Nwazota. All rights reserved.
+      </div>
+      <div class="footer-links">
+        <a href="/admin/settings" class="footer-link">Settings</a>
+        <a href="/admin/help" class="footer-link">Help</a>
+        <a href="/admin/privacy" class="footer-link">Privacy</a>
+        <a href="/" class="footer-link" target="_blank">View Site</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .admin-footer {
+    background: #1a1a1a;
+    color: #e0e0e0;
+    border-top: 3px solid #007bff;
+    margin-top: auto;
+  }
+
+  .admin-footer__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 24px 24px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .admin-footer__section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .admin-footer__brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .admin-footer__brand i {
+    font-size: 1.5rem;
+    color: #007bff;
+  }
+
+  .admin-footer__title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+  }
+
+  .admin-footer__description {
+    color: #8c8c8c;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .admin-footer__version {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .version-badge {
+    background: #007bff;
+    color: #ffffff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: #28a745;
+  }
+
+  .status-indicator i {
+    font-size: 0.6rem;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  .admin-footer__heading {
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .admin-footer__stats {
+    display: flex;
+    gap: 20px;
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #007bff;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: #8c8c8c;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .admin-footer__system {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .system-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+  }
+
+  .system-label {
+    color: #8c8c8c;
+  }
+
+  .system-value {
+    color: #e0e0e0;
+    font-weight: 500;
+  }
+
+  .footer-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .footer-btn {
+    background: #2d2d2d;
+    color: #e0e0e0;
+    border: 1px solid #404040;
+    border-radius: 6px;
+    padding: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+  }
+
+  .footer-btn:hover {
+    background: #007bff;
+    color: #ffffff;
+    border-color: #007bff;
+    transform: translateY(-1px);
+  }
+
+  .admin-footer__bottom {
+    border-top: 1px solid #2d2d2d;
+    padding: 16px 24px;
+    background: #151515;
+  }
+
+  .admin-footer__bottom-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-copyright {
+    color: #8c8c8c;
+    font-size: 0.85rem;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .footer-link {
+    color: #8c8c8c;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s ease;
+  }
+
+  .footer-link:hover {
+    color: #007bff;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 968px) {
+    .admin-footer__container {
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .admin-footer__section:first-child {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .admin-footer__container {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      padding: 24px 20px 20px;
+    }
+
+    .admin-footer__stats {
+      justify-content: space-between;
+    }
+
+    .admin-footer__bottom-content {
+      flex-direction: column;
+      text-align: center;
+      gap: 12px;
+    }
+
+    .footer-links {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .admin-footer__container {
+      padding: 20px 16px 16px;
+    }
+
+    .admin-footer__bottom {
+      padding: 12px 16px;
+    }
+
+    .admin-footer__stats {
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .stat-item {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+</style>
+
+<!-- Font Awesome for icons -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+/>

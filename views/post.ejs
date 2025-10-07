@@ -1,0 +1,335 @@
+<main class="post-main">
+  <article class="post-article">
+    <header class="post-header">
+      <h1 class="post-title"><%= post.title %></h1>
+      <div class="post-meta">
+        <span class="meta-item">
+          <i class="far fa-calendar-alt"></i>
+          <%= post.createdAt ? post.createdAt.toDateString() : "" %>
+        </span>
+        <% if (post.author) { %>
+        <span class="meta-item">
+          <i class="far fa-user"></i>
+          <%= post.author %>
+        </span>
+        <% } %>
+        <span class="meta-item">
+          <i class="far fa-clock"></i>
+          <%= Math.ceil(post.body.split(' ').length / 200) %> min read
+        </span>
+      </div>
+    </header>
+
+    <div class="post-body"><%- post.body %></div>
+
+    <footer class="post-footer">
+      <div class="post-tags">
+        <span class="tags-label">Tags:</span>
+        <span class="tag">Node.js</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">Web Development</span>
+      </div>
+      <div class="post-actions">
+        <button class="action-btn" onclick="window.history.back()">
+          <i class="fas fa-arrow-left"></i>
+          Back to Posts
+        </button>
+        <button
+          class="action-btn"
+          onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+        >
+          <i class="fas fa-arrow-up"></i>
+          Back to Top
+        </button>
+      </div>
+    </footer>
+  </article>
+</main>
+
+<style>
+  .post-main {
+    max-width: 720px;
+    margin: 48px auto 60px auto;
+    padding: 0 24px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      sans-serif;
+  }
+
+  .post-article {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+    padding: 48px 48px 32px 48px;
+    border: 1px solid #f0f0f0;
+  }
+
+  .post-header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #f5f5f5;
+  }
+
+  .post-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2d2d2d;
+    margin: 0 0 24px 0;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+  }
+
+  .post-meta {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    color: #666;
+    font-size: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+  }
+
+  .post-meta i {
+    color: #007bff;
+    font-size: 0.9rem;
+  }
+
+  .post-body {
+    color: #2d2d2d;
+    font-size: 1.125rem;
+    line-height: 1.8;
+    word-break: break-word;
+    white-space: pre-wrap;
+  }
+
+  /* Typography enhancements */
+  .post-body h2 {
+    color: #2d2d2d;
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin: 48px 0 24px 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #007bff;
+  }
+
+  .post-body h3 {
+    color: #2d2d2d;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 40px 0 20px 0;
+  }
+
+  .post-body p {
+    margin: 0 0 24px 0;
+  }
+
+  .post-body img {
+    max-width: 100%;
+    border-radius: 12px;
+    margin: 32px 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .post-body pre,
+  .post-body code {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-size: 0.95rem;
+    font-family: "Fira Code", "Consolas", "Monaco", monospace;
+    color: #2d2d2d;
+    overflow-x: auto;
+    display: block;
+    margin: 24px 0;
+    border: 1px solid #e9ecef;
+    line-height: 1.5;
+  }
+
+  .post-body code:not(pre code) {
+    background: #f8f9fa;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    border: 1px solid #e9ecef;
+  }
+
+  .post-body blockquote {
+    border-left: 4px solid #007bff;
+    background: #f8f9fa;
+    color: #555;
+    margin: 32px 0;
+    padding: 24px 32px;
+    border-radius: 8px;
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .post-body ul,
+  .post-body ol {
+    margin: 24px 0;
+    padding-left: 24px;
+  }
+
+  .post-body li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+  }
+
+  .post-body a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .post-body a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+
+  /* Post footer */
+  .post-footer {
+    margin-top: 60px;
+    padding-top: 32px;
+    border-top: 1px solid #f5f5f5;
+  }
+
+  .post-tags {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+
+  .tags-label {
+    color: #666;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .tag {
+    background: #f8f9fa;
+    color: #007bff;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border: 1px solid #e9ecef;
+    transition: all 0.2s ease;
+  }
+
+  .tag:hover {
+    background: #007bff;
+    color: #fff;
+    transform: translateY(-1px);
+  }
+
+  .post-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .action-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: #f8f9fa;
+    color: #2d2d2d;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
+  }
+
+  .action-btn:hover {
+    background: #007bff;
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .post-main {
+      margin: 32px auto 48px auto;
+      padding: 0 16px;
+    }
+
+    .post-article {
+      padding: 32px 24px 24px 24px;
+      border-radius: 12px;
+    }
+
+    .post-title {
+      font-size: 2rem;
+    }
+
+    .post-meta {
+      gap: 20px;
+      font-size: 0.95rem;
+    }
+
+    .post-body {
+      font-size: 1.05rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .post-article {
+      padding: 24px 20px 20px 20px;
+      border-radius: 12px;
+    }
+
+    .post-title {
+      font-size: 1.75rem;
+    }
+
+    .post-meta {
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .post-body {
+      font-size: 1rem;
+    }
+
+    .post-body h2 {
+      font-size: 1.5rem;
+    }
+
+    .post-body h3 {
+      font-size: 1.25rem;
+    }
+
+    .post-actions {
+      flex-direction: column;
+    }
+
+    .action-btn {
+      justify-content: center;
+    }
+  }
+</style>
+
+<!-- Font Awesome for icons -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+/>

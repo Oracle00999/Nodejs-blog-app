@@ -1,0 +1,43 @@
+<div class="author">
+  <h1 class="author-heading">Hi, I'm Tony</h1>
+  <p class="author-body">A passionate web developer and tech enthusiast.</p>
+</div>
+<img
+  src="/img/nodejsBlog.png"
+  alt="Tony"
+  srcset=""
+  class="hero-image"
+  width="981"
+  height="528"
+/>
+<section class="articles__heading">
+  <h2>Latest Post</h2>
+  <ul class="article_ul">
+    <% posts.forEach(data => { %>
+    <li>
+      <a href="/post/<%- data._id %>">
+        <span><%= data.title %></span>
+        <span class="article-list-date">
+          <%= data.createdAt ? data.createdAt.toDateString() : "" %>
+        </span>
+      </a>
+    </li>
+    <% }) %>
+  </ul>
+
+  <div class="pagination">
+    <% if (current > 1) { %>
+    <a href="?page=<%= current - 1 %>" class="pagination-btn"
+      >&lt; Newer posts</a
+    >
+    <% } %>
+
+    <span class="pagination-info">Page <%= current %></span>
+
+    <% if (nextPage !== null) { %>
+    <a href="?page=<%= nextPage %>" class="pagination-btn"
+      >Load older posts &gt;</a
+    >
+    <% } %>
+  </div>
+</section>

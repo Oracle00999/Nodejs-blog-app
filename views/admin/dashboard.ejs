@@ -1,0 +1,532 @@
+<div class="admin-posts">
+  <div class="admin-posts__header">
+    <div class="admin-posts__title-section">
+      <h2 class="admin-posts__title">
+        <i class="fas fa-file-alt"></i>
+        Posts Management
+      </h2>
+      <p class="admin-posts__subtitle">Manage and edit your blog posts</p>
+    </div>
+    <a href="/admin/add-post" class="admin-posts__add-btn">
+      <i class="fas fa-plus"></i>
+      Add New Post
+    </a>
+  </div>
+
+  <div class="admin-posts__stats">
+    <div class="stat-card">
+      <div class="stat-icon">
+        <i class="fas fa-file-alt"></i>
+      </div>
+      <div class="stat-content">
+        <span class="stat-number"><%= data.length %></span>
+        <span class="stat-label">Total Posts</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">
+        <i class="fas fa-eye"></i>
+      </div>
+      <div class="stat-content">
+        <span class="stat-number">1.2K</span>
+        <span class="stat-label">Total Views</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="admin-posts__content">
+    <% if (data.length === 0) { %>
+    <div class="admin-posts__empty">
+      <i class="fas fa-file-alt"></i>
+      <h3>No Posts Yet</h3>
+      <p>Get started by creating your first blog post</p>
+      <a href="/add-post" class="admin-posts__empty-btn">
+        <i class="fas fa-plus"></i>
+        Create First Post
+      </a>
+    </div>
+    <% } else { %>
+    <div class="admin-posts__list">
+      <% data.forEach(post => { %>
+      <div class="post-card">
+        <div class="post-card__content">
+          <h3 class="post-card__title">
+            <a href="/post/<%= post._id %>" class="post-card__link">
+              <%= post.title %>
+              <i class="fas fa-external-link-alt"></i>
+            </a>
+          </h3>
+          <div class="post-card__meta">
+            <span class="post-meta">
+              <i class="far fa-calendar"></i>
+              <!-- prettier-ignore -->
+              <%= post.createdAt ? post.createdAt.toLocaleDateString() : 'No date' %>
+            </span>
+
+            <span class="post-status post-status--published">
+              <i class="fas fa-circle"></i>
+              Published
+            </span>
+          </div>
+        </div>
+        <div class="post-card__actions">
+          <a
+            href="/admin/edit-post/<%= post._id %>"
+            class="action-btn action-btn--edit"
+          >
+            <i class="fas fa-edit"></i>
+            Edit
+          </a>
+          <form
+            action="/admin/delete-post/<%= post._id %>?_method=DELETE"
+            method="POST"
+            class="delete-form"
+          >
+            <button
+              type="submit"
+              class="action-btn action-btn--delete"
+              onclick="return confirm('Are you sure you want to delete this post?')"
+            >
+              <i class="fas fa-trash"></i>
+              Delete
+            </button>
+          </form>
+          <div class="action-dropdown">
+            <button class="action-btn action-btn--more">
+              <i class="fas fa-ellipsis-v"></i>
+            </button>
+            <div class="dropdown-menu">
+              <a
+                href="/posts/<%= post._id %>"
+                class="dropdown-item"
+                target="_blank"
+              >
+                <i class="fas fa-external-link-alt"></i>
+                View Post
+              </a>
+              <button class="dropdown-item">
+                <i class="fas fa-copy"></i>
+                Duplicate
+              </button>
+              <button class="dropdown-item">
+                <i class="fas fa-archive"></i>
+                Archive
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+    <% } %>
+  </div>
+</div>
+
+<style>
+  .admin-posts {
+    padding: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .admin-posts__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 32px;
+    gap: 20px;
+  }
+
+  .admin-posts__title-section {
+    flex: 1;
+  }
+
+  .admin-posts__title {
+    color: #2d2d2d;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .admin-posts__title i {
+    color: #007bff;
+    font-size: 1.5rem;
+  }
+
+  .admin-posts__subtitle {
+    color: #666;
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  .admin-posts__add-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #007bff;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .admin-posts__add-btn:hover {
+    background: #0056b3;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+  }
+
+  .admin-posts__stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .stat-card {
+    background: #ffffff;
+    border: 1px solid #e1e5e9;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: transform 0.2s ease;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .stat-icon {
+    width: 48px;
+    height: 48px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #007bff;
+    font-size: 1.25rem;
+  }
+
+  .stat-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2d2d2d;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 4px;
+  }
+
+  .admin-posts__empty {
+    text-align: center;
+    padding: 80px 40px;
+    background: #ffffff;
+    border: 2px dashed #e1e5e9;
+    border-radius: 16px;
+  }
+
+  .admin-posts__empty i {
+    font-size: 4rem;
+    color: #8c8c8c;
+    margin-bottom: 20px;
+  }
+
+  .admin-posts__empty h3 {
+    color: #2d2d2d;
+    font-size: 1.5rem;
+    margin: 0 0 12px 0;
+  }
+
+  .admin-posts__empty p {
+    color: #666;
+    font-size: 1rem;
+    margin: 0 0 24px 0;
+  }
+
+  .admin-posts__empty-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #007bff;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+
+  .admin-posts__empty-btn:hover {
+    background: #0056b3;
+    transform: translateY(-1px);
+  }
+
+  .admin-posts__list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .post-card {
+    background: #ffffff;
+    border: 1px solid #e1e5e9;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    transition: all 0.2s ease;
+  }
+
+  .post-card:hover {
+    border-color: #007bff;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.1);
+  }
+
+  .post-card__content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .post-card__title {
+    margin: 0 0 12px 0;
+  }
+
+  .post-card__link {
+    color: #2d2d2d;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s ease;
+  }
+
+  .post-card__link:hover {
+    color: #007bff;
+  }
+
+  .post-card__link i {
+    font-size: 0.8rem;
+    color: #8c8c8c;
+  }
+
+  .post-card__meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #666;
+    font-size: 0.85rem;
+  }
+
+  .post-meta i {
+    font-size: 0.8rem;
+    color: #8c8c8c;
+  }
+
+  .post-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 12px;
+  }
+
+  .post-status--published {
+    background: #d4edda;
+    color: #155724;
+  }
+
+  .post-status i {
+    font-size: 0.5rem;
+  }
+
+  .post-card__actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .action-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border: 1px solid #e1e5e9;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #666;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .action-btn--edit:hover {
+    background: #007bff;
+    color: #ffffff;
+    border-color: #007bff;
+  }
+
+  .action-btn--delete:hover {
+    background: #dc3545;
+    color: #ffffff;
+    border-color: #dc3545;
+  }
+
+  .action-btn--more {
+    padding: 8px;
+  }
+
+  .delete-form {
+    margin: 0;
+  }
+
+  .action-dropdown {
+    position: relative;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #ffffff;
+    border: 1px solid #e1e5e9;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 8px;
+    min-width: 160px;
+    z-index: 10;
+    display: none;
+  }
+
+  .action-dropdown:hover .dropdown-menu {
+    display: block;
+  }
+
+  .dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 8px 12px;
+    border: none;
+    background: none;
+    color: #666;
+    text-decoration: none;
+    font-size: 0.85rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+  }
+
+  .dropdown-item:hover {
+    background: #f8f9fa;
+    color: #007bff;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .admin-posts {
+      padding: 16px;
+    }
+
+    .admin-posts__header {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 16px;
+    }
+
+    .admin-posts__add-btn {
+      justify-content: center;
+    }
+
+    .post-card {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 16px;
+    }
+
+    .post-card__actions {
+      justify-content: flex-end;
+    }
+
+    .post-card__meta {
+      gap: 12px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .admin-posts__stats {
+      grid-template-columns: 1fr;
+    }
+
+    .post-card__actions {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .action-btn span {
+      display: none;
+    }
+
+    .action-btn {
+      padding: 8px;
+    }
+  }
+</style>
+
+<!-- Font Awesome for icons -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+/>
+
+<!-- <div>
+//   <h2>Posts</h2>
+//   <a href="/add-post"> +add new post</a>
+// </div>
+// <ul>
+//   <% data.forEach(post => { %>
+//   <li>
+//     <a href="/posts/<%= post._id %>"><%= post.title %> &nearr;</a>
+//     <div>
+//       <a href="/edit-post/<%= post._id %>"> Edit</a>
+//       <form action="/delete-post/<%= post._id %>?method=DELETE" method="POST">
+//         <input type="submit" value="delete" />
+//       </form>
+//     </div>
+//   </li>
+//   <% }) %>
+// </ul> -->

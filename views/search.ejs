@@ -1,0 +1,275 @@
+<div class="search-results-container">
+  <header class="search-results-header">
+    <h1 class="search-results-heading">Search Results</h1>
+    <p class="search-results-subtitle">
+      Found <strong><%= post.length %></strong> result<%= post.length !== 1 ?
+      's' : '' %> for your search
+    </p>
+  </header>
+
+  <% if (post.length === 0) { %>
+  <div class="no-results">
+    <i class="fas fa-search"></i>
+    <h2>No results found</h2>
+    <p>Try adjusting your search terms or browse all posts.</p>
+    <a href="/" class="browse-all-btn">Browse All Posts</a>
+  </div>
+  <% } else { %>
+  <ul class="search-results-list">
+    <% post.forEach(posts => { %>
+    <li class="search-result-item">
+      <a href="/post/<%- posts._id %>" class="search-result-link">
+        <div class="search-result-content">
+          <h3 class="search-result-title"><%= posts.title %></h3>
+          <div class="search-result-meta">
+            <span class="search-result-date">
+              <i class="far fa-calendar-alt"></i>
+              <%= posts.createdAt ? posts.createdAt.toDateString() : "" %>
+            </span>
+          </div>
+        </div>
+        <i class="fas fa-chevron-right search-result-arrow"></i>
+      </a>
+    </li>
+    <% }) %>
+  </ul>
+  <% } %>
+</div>
+
+<style>
+  .search-results-container {
+    max-width: 720px;
+    margin: 48px auto 60px auto;
+    padding: 0 24px;
+  }
+
+  .search-results-header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .search-results-heading {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #2d2d2d;
+    margin: 0 0 12px 0;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+  }
+
+  .search-results-subtitle {
+    color: #666;
+    font-size: 1.1rem;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .search-results-subtitle strong {
+    color: #007bff;
+  }
+
+  /* No Results State */
+  .no-results {
+    text-align: center;
+    padding: 80px 40px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+    border: 1px solid #f0f0f0;
+  }
+
+  .no-results .fa-search {
+    font-size: 3rem;
+    color: #8c8c8c;
+    margin-bottom: 24px;
+  }
+
+  .no-results h2 {
+    color: #2d2d2d;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+  }
+
+  .no-results p {
+    color: #666;
+    font-size: 1.1rem;
+    margin: 0 0 32px 0;
+    line-height: 1.6;
+  }
+
+  .browse-all-btn {
+    display: inline-block;
+    padding: 12px 32px;
+    background: #007bff;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    border: 1px solid #007bff;
+  }
+
+  .browse-all-btn:hover {
+    background: #0056b3;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+  }
+
+  /* Search Results List */
+  .search-results-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+    border: 1px solid #f0f0f0;
+    overflow: hidden;
+  }
+
+  .search-result-item {
+    border-bottom: 1px solid #f5f5f5;
+  }
+
+  .search-result-item:last-child {
+    border-bottom: none;
+  }
+
+  .search-result-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 32px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s ease;
+    background: #ffffff;
+  }
+
+  .search-result-link:hover {
+    background: #f8f9fa;
+    transform: translateX(4px);
+  }
+
+  .search-result-content {
+    flex: 1;
+  }
+
+  .search-result-title {
+    color: #2d2d2d;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    line-height: 1.4;
+  }
+
+  .search-result-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .search-result-date {
+    color: #8c8c8c;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .search-result-date i {
+    color: #007bff;
+    font-size: 0.8rem;
+  }
+
+  .search-result-arrow {
+    color: #8c8c8c;
+    font-size: 0.9rem;
+    transition: transform 0.2s ease;
+  }
+
+  .search-result-link:hover .search-result-arrow {
+    color: #007bff;
+    transform: translateX(4px);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .search-results-container {
+      margin: 32px auto 48px auto;
+      padding: 0 16px;
+    }
+
+    .search-results-heading {
+      font-size: 1.75rem;
+    }
+
+    .search-results-header {
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+    }
+
+    .no-results {
+      padding: 60px 24px;
+    }
+
+    .search-result-link {
+      padding: 20px 24px;
+    }
+
+    .search-result-title {
+      font-size: 1.1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .search-results-container {
+      margin: 24px auto 40px auto;
+      padding: 0 12px;
+    }
+
+    .search-results-heading {
+      font-size: 1.5rem;
+    }
+
+    .search-results-subtitle {
+      font-size: 1rem;
+    }
+
+    .no-results {
+      padding: 40px 20px;
+      border-radius: 12px;
+    }
+
+    .no-results .fa-search {
+      font-size: 2.5rem;
+    }
+
+    .search-result-link {
+      padding: 16px 20px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .search-result-arrow {
+      align-self: flex-end;
+    }
+
+    .search-result-meta {
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-start;
+    }
+  }
+</style>
+
+<!-- Font Awesome for icons -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+/>

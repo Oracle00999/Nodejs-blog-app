@@ -1,0 +1,297 @@
+<header class="admin-header">
+  <div class="admin-header__container">
+    <a href="/admin" class="admin-header__logo">
+      <i class="fas fa-shield-alt"></i>
+      Admin Panel
+    </a>
+
+    <button class="admin-header__toggle" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <nav class="admin-header__nav">
+      <ul class="admin-header__nav-list">
+        <li class="admin-header__nav-item">
+          <a href="/admin/dashboard" class="admin-header__nav-link">
+            <i class="fas fa-tachometer-alt"></i>
+            Dashboard
+          </a>
+        </li>
+        <li class="admin-header__nav-item">
+          <a href="/admin/posts" class="admin-header__nav-link">
+            <i class="fas fa-file-alt"></i>
+            Posts
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="admin-header__actions">
+      <a href="/" class="admin-header__view-site" target="_blank">
+        <i class="fas fa-external-link-alt"></i>
+        View Site
+      </a>
+      <button class="admin-header__logout">
+        <i class="fas fa-sign-out-alt"></i>
+        <a href="/admin">Logout</a>
+      </button>
+    </div>
+  </div>
+</header>
+
+<style>
+  .admin-header {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    color: #ffffff;
+    padding: 16px 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border-bottom: 3px solid #007bff;
+    position: relative;
+    z-index: 1000;
+  }
+
+  .admin-header__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 24px;
+    position: relative;
+  }
+
+  .admin-header__logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 1002;
+  }
+
+  .admin-header__logo .fa-shield-alt {
+    color: #007bff;
+    font-size: 1.3rem;
+  }
+
+  .admin-header__toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    z-index: 1002;
+  }
+
+  .admin-header__toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .admin-header__nav {
+    flex: 1;
+    margin-left: 40px;
+    transition: all 0.3s ease;
+  }
+
+  .admin-header__nav-list {
+    display: flex;
+    gap: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .admin-header__nav-item {
+    margin: 0;
+  }
+
+  .admin-header__nav-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #e0e0e0;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 10px 16px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+  }
+
+  .admin-header__nav-link:hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .admin-header__nav-link i {
+    font-size: 0.9rem;
+    width: 16px;
+    text-align: center;
+  }
+
+  .admin-header__actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: 32px;
+  }
+
+  .admin-header__view-site {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #e0e0e0;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .admin-header__view-site:hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .admin-header__logout {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #dc3545;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 18px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .admin-header__logout:hover {
+    background: #c82333;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 900px) {
+    .admin-header__container {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 16px;
+      padding: 0 20px;
+    }
+
+    .admin-header__nav {
+      margin-left: 0;
+      width: 100%;
+    }
+
+    .admin-header__actions {
+      margin-left: 0;
+      width: 100%;
+      justify-content: flex-end;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .admin-header__toggle {
+      display: block;
+    }
+
+    .admin-header__nav {
+      max-height: 0;
+      overflow: hidden;
+      background: #2d2d2d;
+      width: 100%;
+      margin: 0;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 1001;
+      border-top: 1px solid #404040;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .admin-header__nav--open {
+      max-height: 400px;
+      padding: 16px 0;
+    }
+
+    .admin-header__nav-list {
+      flex-direction: column;
+      gap: 4px;
+      padding: 0 20px;
+    }
+
+    .admin-header__nav-link {
+      padding: 12px 16px;
+      border-radius: 6px;
+    }
+
+    .admin-header__actions {
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .admin-header__view-site,
+    .admin-header__logout {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .admin-header__container {
+      padding: 0 16px;
+    }
+
+    .admin-header__logo {
+      font-size: 1.3rem;
+    }
+
+    .admin-header__nav-list {
+      padding: 0 16px;
+    }
+  }
+</style>
+
+<!-- Font Awesome for icons -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+/>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const toggle = document.querySelector(".admin-header__toggle");
+    const nav = document.querySelector(".admin-header__nav");
+
+    if (toggle && nav) {
+      toggle.addEventListener("click", function () {
+        nav.classList.toggle("admin-header__nav--open");
+      });
+    }
+
+    // Close mobile menu when clicking outside
+    document.addEventListener("click", function (event) {
+      if (!event.target.closest(".admin-header__container")) {
+        nav.classList.remove("admin-header__nav--open");
+      }
+    });
+  });
+</script>

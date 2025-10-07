@@ -1,0 +1,383 @@
+<div class="admin-edit-container">
+  <!-- Header -->
+  <div class="admin-edit-header">
+    <a href="/admin/dashboard" class="back-btn">
+      <i class="fas fa-arrow-left"></i>
+      Back to Dashboard
+    </a>
+    <div class="header-main">
+      <h1 class="admin-edit-title">Edit / Delete Post</h1>
+      <div class="post-meta">
+        <span class="post-id">ID: <%= data._id %></span>
+        <span class="post-date">
+          <i class="far fa-calendar"></i>
+          <%= data.createdAt ? new Date(data.createdAt).toLocaleDateString() :
+          'Unknown' %>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Danger Zone -->
+  <div class="danger-zone">
+    <h3 class="danger-title">
+      <i class="fas fa-exclamation-triangle"></i>
+      Danger Zone
+    </h3>
+    <p class="danger-description">
+      Permanently delete this post. This action cannot be undone.
+    </p>
+    <form
+      action="/admin/delete-post/<%= data._id %>?_method=DELETE"
+      method="POST"
+      class="delete-form"
+      onsubmit="return confirmDelete()"
+    >
+      <button type="submit" class="btn btn-danger">
+        <i class="fas fa-trash"></i>
+        Delete Post
+      </button>
+    </form>
+  </div>
+
+  <!-- Edit Form -->
+  <form
+    action="/admin/edit-post/<%= data._id %>?_method=PUT"
+    method="POST"
+    class="admin-edit-form"
+  >
+    <div class="form-section">
+      <div class="form-group">
+        <label for="title" class="form-label">
+          Post Title
+          <span class="required">*</span>
+        </label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          class="form-input"
+          placeholder="Enter post title"
+          value="<%= data.title %>"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="body" class="form-label">
+          Content
+          <span class="required">*</span>
+        </label>
+        <textarea
+          id="body"
+          name="body"
+          class="form-textarea"
+          placeholder="Write your post content here..."
+          rows="20"
+          required
+        >
+<%= data.body %></textarea
+        >
+        <div class="form-hint">Supports Markdown formatting</div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button
+        type="button"
+        class="btn btn-secondary"
+        onclick="window.history.back()"
+      >
+        <i class="fas fa-times"></i>
+        Cancel
+      </button>
+      <a href="/post/<%= data._id %>" class="btn btn-outline" target="_blank">
+        <i class="fas fa-eye"></i>
+        Preview
+      </a>
+      <button type="submit" class="btn btn-primary">
+        <i class="fas fa-save"></i>
+        Update Post
+      </button>
+    </div>
+  </form>
+</div>
+
+<style>
+  .admin-edit-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+
+  .admin-edit-header {
+    margin-bottom: 32px;
+  }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    padding: 8px 0;
+    transition: color 0.2s ease;
+  }
+
+  .back-btn:hover {
+    color: #0056b3;
+  }
+
+  .header-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .admin-edit-title {
+    color: #2d2d2d;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -0.5px;
+  }
+
+  .post-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-end;
+  }
+
+  .post-id {
+    background: #f8f9fa;
+    color: #6c757d;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-family: "Fira Code", monospace;
+  }
+
+  .post-date {
+    color: #666;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Danger Zone */
+  .danger-zone {
+    background: #fff5f5;
+    border: 1px solid #fed7d7;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 32px;
+  }
+
+  .danger-title {
+    color: #c53030;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .danger-description {
+    color: #744210;
+    font-size: 0.95rem;
+    margin: 0 0 16px 0;
+    line-height: 1.5;
+  }
+
+  /* Form Styles */
+  .admin-edit-form {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 32px;
+    border: 1px solid #f0f0f0;
+  }
+
+  .form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-label {
+    color: #2d2d2d;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .required {
+    color: #dc3545;
+    font-size: 1.2rem;
+  }
+
+  .form-input,
+  .form-textarea {
+    padding: 14px 16px;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #ffffff;
+    transition: all 0.2s ease;
+    color: #2d2d2d;
+    font-family: inherit;
+    width: 100%;
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 400px;
+    line-height: 1.6;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  .form-input:focus,
+  .form-textarea:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  }
+
+  .form-hint {
+    color: #8c8c8c;
+    font-size: 0.85rem;
+    font-style: italic;
+  }
+
+  /* Buttons */
+  .form-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid #f0f0f0;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    font-family: inherit;
+  }
+
+  .btn-primary {
+    background: #007bff;
+    color: #ffffff;
+  }
+
+  .btn-primary:hover {
+    background: #0056b3;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+  }
+
+  .btn-secondary {
+    background: #6c757d;
+    color: #ffffff;
+  }
+
+  .btn-secondary:hover {
+    background: #545b62;
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: #6c757d;
+    border: 2px solid #e1e5e9;
+  }
+
+  .btn-outline:hover {
+    background: #f8f9fa;
+    border-color: #6c757d;
+  }
+
+  .btn-danger {
+    background: #dc3545;
+    color: #ffffff;
+  }
+
+  .btn-danger:hover {
+    background: #c82333;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .admin-edit-container {
+      padding: 16px;
+    }
+
+    .header-main {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .post-meta {
+      align-items: flex-start;
+    }
+
+    .admin-edit-form {
+      padding: 24px;
+    }
+
+    .form-actions {
+      flex-direction: column;
+    }
+
+    .btn {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .admin-edit-title {
+      font-size: 1.5rem;
+    }
+
+    .admin-edit-form {
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .danger-zone {
+      padding: 20px;
+    }
+  }
+</style>
+
+<!-- Font Awesome for icons -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+/>

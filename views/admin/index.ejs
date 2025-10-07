@@ -1,0 +1,299 @@
+<div class="admin-login-container">
+  <div class="admin-login-card">
+    <div class="admin-login-header">
+      <i class="fas fa-shield-alt"></i>
+      <h1>Admin Login</h1>
+      <p>Enter your credentials to access the dashboard</p>
+    </div>
+
+    <form action="/admin" method="POST" class="admin-login-form">
+      <div class="form-group">
+        <label for="username" class="form-label">Username</label>
+        <div class="input-group">
+          <i class="fas fa-user input-icon"></i>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            class="form-input"
+            placeholder="Enter your username"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password" class="form-label">Password</label>
+        <div class="input-group">
+          <i class="fas fa-lock input-icon"></i>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-input"
+            placeholder="Enter your password"
+            required
+          />
+          <button
+            type="button"
+            class="password-toggle"
+            aria-label="Toggle password visibility"
+          >
+            <i class="fas fa-eye"></i>
+          </button>
+        </div>
+      </div>
+
+      <button type="submit" class="admin-login-btn">
+        <i class="fas fa-sign-in-alt"></i>
+        Sign In
+      </button>
+    </form>
+
+    <div class="admin-login-footer">
+      <p>Need help? <a href="/contact" class="help-link">Contact support</a></p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .admin-login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f0f0;
+    padding: 40px 24px;
+  }
+
+  .admin-login-card {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    padding: 48px 40px;
+    width: 100%;
+    max-width: 440px;
+    border: 1px solid #e0e0e0;
+  }
+
+  .admin-login-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .admin-login-header i {
+    font-size: 3rem;
+    color: #007bff;
+    margin-bottom: 20px;
+  }
+
+  .admin-login-header h1 {
+    color: #2d2d2d;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 12px 0;
+    letter-spacing: -0.5px;
+  }
+
+  .admin-login-header p {
+    color: #666;
+    font-size: 1.1rem;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .admin-login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-label {
+    color: #2d2d2d;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+  }
+
+  .input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .input-icon {
+    position: absolute;
+    left: 16px;
+    color: #8c8c8c;
+    font-size: 1.1rem;
+    z-index: 2;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 16px 48px 16px 48px;
+    border: 2px solid #e1e5e9;
+    border-radius: 12px;
+    font-size: 1rem;
+    background: #ffffff;
+    transition: all 0.3s ease;
+    color: #2d2d2d;
+    font-family: inherit;
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
+  }
+
+  .form-input::placeholder {
+    color: #8c8c8c;
+    font-weight: 400;
+  }
+
+  .password-toggle {
+    position: absolute;
+    right: 16px;
+    background: none;
+    border: none;
+    color: #8c8c8c;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    font-size: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+  }
+
+  .password-toggle:hover {
+    color: #007bff;
+    background: rgba(0, 123, 255, 0.1);
+  }
+
+  .admin-login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    padding: 18px 24px;
+    background: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 8px;
+  }
+
+  .admin-login-btn:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
+  }
+
+  .admin-login-btn:active {
+    transform: translateY(0);
+  }
+
+  .admin-login-footer {
+    text-align: center;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid #f0f0f0;
+  }
+
+  .admin-login-footer p {
+    color: #666;
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  .help-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+
+  .help-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 480px) {
+    .admin-login-container {
+      padding: 24px 16px;
+    }
+
+    .admin-login-card {
+      padding: 40px 24px;
+      border-radius: 12px;
+    }
+
+    .admin-login-header h1 {
+      font-size: 1.75rem;
+    }
+
+    .admin-login-header i {
+      font-size: 2.5rem;
+    }
+
+    .admin-login-header p {
+      font-size: 1rem;
+    }
+
+    .form-input {
+      padding: 14px 44px 14px 44px;
+    }
+
+    .admin-login-btn {
+      padding: 16px 20px;
+      font-size: 1rem;
+    }
+  }
+</style>
+
+<!-- Font Awesome for icons -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+/>
+
+<!-- <h1>Register</h1>
+<form action="admin/register" method="POST">
+  <div class="form-group">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required />
+  </div>
+  <div class="form-group">
+    <label for="password">Password:</label>
+    <input
+      type="password"
+      id="password"
+      name="password"
+      placeholder="Enter your password"
+      required
+    />
+  </div>
+  <button type="submit">Register</button>
+</form> -->
